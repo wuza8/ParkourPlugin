@@ -1,3 +1,6 @@
 name: ParkourPlugin
 main: ParkourPlugin
 version: 0.1
+commands:
+  apk:
+  pk:
