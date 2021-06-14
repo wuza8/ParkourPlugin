@@ -1,7 +1,8 @@
 package AyBiCi.ParkourPlugin;
 
 import AyBiCi.ParkourPlugin.commands.PkCommand;
-import AyBiCi.ParkourPlugin.commands.apk.AddPkCommand;
+import AyBiCi.ParkourPlugin.commands.apk.AddCommand;
+import AyBiCi.ParkourPlugin.commands.apk.RemoveCommand;
 import com.github.aybici.Subcommand;
 import com.github.aybici.SubcommandExecutor;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -22,11 +23,18 @@ public class ParkourPlugin extends JavaPlugin {
         SubcommandExecutor executor = new SubcommandExecutor("apk");
 
         executor.addCommandExecutor(new Subcommand(
-            "addpk",
+            "add",
             "<name>",
             "adds new parkour",
-                new AddPkCommand()
+                new AddCommand()
             ));
+
+        executor.addCommandExecutor(new Subcommand(
+                "remove",
+                "<name>",
+                "removes parkour",
+                new RemoveCommand()
+        ));
 
         getCommand("apk").setExecutor(executor);
     }

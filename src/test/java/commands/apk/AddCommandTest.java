@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AddPkCommandTest {
+public class AddCommandTest {
     private ServerMock server;
     private ParkourPlugin plugin;
     private PlayerMock player;
@@ -39,11 +39,11 @@ public class AddPkCommandTest {
         Location parkour2 = new Location(world, 20, 20, 20);
 
         player.simulatePlayerMove(parkour1);
-        player.performCommand("apk addpk abc");
+        player.performCommand("apk add abc");
         assertEquals("Parkour with name \"abc\" added!", player.nextMessage());
 
         player.simulatePlayerMove(parkour2);
-        player.performCommand("apk addpk cde");
+        player.performCommand("apk add cde");
         assertEquals("Parkour with name \"cde\" added!", player.nextMessage());
 
         player.performCommand("pk abc");
@@ -55,15 +55,15 @@ public class AddPkCommandTest {
 
     @Test
     public void addParkour_nameAlreadyUsed(){
-        player.performCommand("apk addpk abc");
+        player.performCommand("apk add abc");
         player.nextMessage();
-        player.performCommand("apk addpk abc");
+        player.performCommand("apk add abc");
         assertEquals("Parkour with name \"abc\" already exists!", player.nextMessage());
     }
 
     @Test
     public void addParkour_nameCantStartFromDigit(){
-        player.performCommand("apk addpk 1abc");
+        player.performCommand("apk add 1abc");
         assertEquals("Parkour name can't start from a digit!", player.nextMessage());
     }
 

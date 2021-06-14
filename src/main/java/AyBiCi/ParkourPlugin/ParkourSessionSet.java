@@ -15,7 +15,6 @@ public class ParkourSessionSet {
 
     public void teleportToParkour(Player player, String name) {
         Parkour parkour = parkourSet.getParkour(name);
-        if(parkour == null) throw new IllegalStateException("Parkour with name \""+name+"\" doesn't exist!");
         player.teleport(parkour.getLocation());
     }
 }
