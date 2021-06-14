@@ -1,6 +1,7 @@
 package AyBiCi.ParkourPlugin;
 
 import AyBiCi.ParkourPlugin.commands.PkCommand;
+import AyBiCi.ParkourPlugin.commands.PkatCommand;
 import AyBiCi.ParkourPlugin.commands.apk.AddCommand;
 import AyBiCi.ParkourPlugin.commands.apk.RemoveCommand;
 import com.github.aybici.Subcommand;
@@ -19,6 +20,7 @@ public class ParkourPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         getCommand("pk").setExecutor(new PkCommand());
+        getCommand("pkat").setExecutor(new PkatCommand());
 
         SubcommandExecutor executor = new SubcommandExecutor("apk");
 
