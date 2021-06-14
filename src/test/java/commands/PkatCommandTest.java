@@ -50,8 +50,8 @@ public class PkatCommandTest {
 
     @Test
     public void playerIsNotOnAnyParkour(){
-        PlayerMock player2 = server.addPlayer("Player");
-        player.performCommand("pkat Player");
+        PlayerMock player2 = server.addPlayer("Player2");
+        player.performCommand("pkat Player2");
         assertEquals("This player doesn't play any parkour!", player.nextMessage());
     }
 }
