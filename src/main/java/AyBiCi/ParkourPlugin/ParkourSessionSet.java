@@ -1,3 +1,5 @@
+package AyBiCi.ParkourPlugin;
+
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -12,6 +14,8 @@ public class ParkourSessionSet {
     }
 
     public void teleportToParkour(Player player, String name) {
-        player.teleport(parkourSet.getParkour(name).getLocation());
+        Parkour parkour = parkourSet.getParkour(name);
+        if(parkour == null) throw new IllegalStateException("Parkour with name \""+name+"\" doesn't exist!");
+        player.teleport(parkour.getLocation());
     }
 }

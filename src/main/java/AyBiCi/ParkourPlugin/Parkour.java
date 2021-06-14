@@ -1,3 +1,5 @@
+package AyBiCi.ParkourPlugin;
+
 import org.bukkit.Location;
 
 public class Parkour {

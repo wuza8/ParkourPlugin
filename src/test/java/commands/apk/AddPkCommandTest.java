@@ -1,3 +1,6 @@
+package commands.apk;
+
+import AyBiCi.ParkourPlugin.ParkourPlugin;
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
@@ -9,7 +12,7 @@ import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ParkourPluginTest {
+public class AddPkCommandTest {
     private ServerMock server;
     private ParkourPlugin plugin;
     private PlayerMock player;
@@ -56,12 +59,6 @@ public class ParkourPluginTest {
         player.nextMessage();
         player.performCommand("apk addpk abc");
         assertEquals("Parkour with name \"abc\" already exists!", player.nextMessage());
-    }
-
-    @Test
-    public void teleportToParkour_parkourDoesntExist(){
-        player.performCommand("pk abc");
-        assertEquals("Parkour with name \"abc\" doesn't exist!", player.nextMessage());
     }
 
     @Test

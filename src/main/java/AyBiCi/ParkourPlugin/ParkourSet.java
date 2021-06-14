@@ -1,3 +1,5 @@
+package AyBiCi.ParkourPlugin;
+
 import org.bukkit.Location;
 
 import java.util.HashSet;
@@ -10,6 +12,8 @@ public class ParkourSet {
     public void addParkour(String name, Location location) throws IllegalStateException{
         if(getParkour(name) != null)
             throw new IllegalStateException("Parkour with name \""+name+"\" already exists!");
+        if(Character.isDigit(name.toCharArray()[0]))
+            throw new IllegalStateException("Parkour name can't start from a digit!");
 
         parkours.add(new Parkour(name, location));
     }
