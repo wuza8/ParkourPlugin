@@ -2,6 +2,7 @@ package AyBiCi.ParkourPlugin;
 
 import AyBiCi.ParkourPlugin.commands.PkCommand;
 import AyBiCi.ParkourPlugin.commands.PkatCommand;
+import AyBiCi.ParkourPlugin.commands.apk.AddBackBlockCommand;
 import AyBiCi.ParkourPlugin.commands.apk.AddCommand;
 import AyBiCi.ParkourPlugin.commands.apk.RemoveCommand;
 import com.github.aybici.Subcommand;
@@ -36,6 +37,12 @@ public class ParkourPlugin extends JavaPlugin {
                 "<name>",
                 "removes parkour",
                 new RemoveCommand()
+        ));
+
+        executor.addCommandExecutor(new Subcommand("addbb"
+                , "<block1> [block2] [block3] [block4] [block5]"
+                , "adds new backblocks",
+                new AddBackBlockCommand()
         ));
 
         getCommand("apk").setExecutor(executor);

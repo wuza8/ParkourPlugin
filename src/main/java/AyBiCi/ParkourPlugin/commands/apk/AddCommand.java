@@ -15,6 +15,7 @@ public class AddCommand implements CommandExecutor {
         try {
             ParkourPlugin.parkourSet.addParkour(args[0], player.getLocation());
             player.sendMessage("Parkour with name \""+args[0]+"\" added!");
+            ParkourPlugin.parkourSessionSet.teleportToParkour(player, args[0]);
         }
         catch(Exception exception){
             player.sendMessage(exception.getMessage());

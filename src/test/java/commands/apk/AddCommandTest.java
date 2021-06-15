@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class AddCommandTest {
     private ServerMock server;
@@ -35,26 +36,26 @@ public class AddCommandTest {
 
     @Test
     public void addParkour(){
-        Location parkour1 = new Location(world, 10, 10, 10);
-        Location parkour2 = new Location(world, 20, 20, 20);
+        Location parkour1 = player.getLocation().clone().add(300, 0, 400);
+        Location parkour2 = player.getLocation().clone().add(600, 0, 200);
 
         player.simulatePlayerMove(parkour1);
-        player.performCommand("apk add abc");
-        assertEquals("Parkour with name \"abc\" added!", player.nextMessage());
+        player.performCommand("apk add addpk1");
+        assertEquals("Parkour with name \"addpk1\" added!", player.nextMessage());
 
         player.simulatePlayerMove(parkour2);
-        player.performCommand("apk add cde");
-        assertEquals("Parkour with name \"cde\" added!", player.nextMessage());
+        player.performCommand("apk add addpk2");
+        assertEquals("Parkour with name \"addpk2\" added!", player.nextMessage());
 
-        player.performCommand("pk abc");
+        player.performCommand("pk addpk1");
         player.assertTeleported(parkour1, 1);
 
-        player.performCommand("pk cde");
+        player.performCommand("pk addpk2");
         player.assertTeleported(parkour2, 1);
     }
 
     @Test
-    public void addParkour_nameAlreadyUsed(){
+    public void nameAlreadyUsed(){
         player.performCommand("apk add abc");
         player.nextMessage();
         player.performCommand("apk add abc");
@@ -62,10 +63,16 @@ public class AddCommandTest {
     }
 
     @Test
-    public void addParkour_nameCantStartFromDigit(){
+    public void nameCantStartFromDigit(){
         player.performCommand("apk add 1abc");
         assertEquals("Parkour name can't start from a digit!", player.nextMessage());
     }
 
-
+    @Test
+    public void addParkourCommandAddsYouToParkour(){
+        player.performCommand("apk add abc");
+        player.nextMessage();
+        player.performCommand("apk addbb air");
+        assertNotEquals("You need to join parkour to use this command!", player.nextMessage());
+    }
 }
