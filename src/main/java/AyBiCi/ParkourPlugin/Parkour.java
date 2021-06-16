@@ -24,11 +24,46 @@ public class Parkour {
         return name;
     }
 
-    public boolean addBackBlock(Material material) {
-        if(!backBlocks.contains(material)){
-            backBlocks.add(material);
-            return true;
-        }
-        else return false;
+    public Material addBackBlock(String materialName){
+        Material material = getMaterial(materialName);
+
+        if(material == Material.AIR)
+            throw new IllegalStateException("AIR can't be a backblock!");
+        else if(hasBackBlock(material))
+            throw new IllegalStateException(material.name() + " is already a backblock!");
+
+        addBackBlock(material);
+        return material;
+    }
+
+    public void addBackBlock(Material material) {
+        backBlocks.add(material);
+    }
+
+    public Material removeBackBlock(String materialName){
+        Material material = getMaterial(materialName);
+
+        if(!hasBackBlock(material))
+            throw new IllegalStateException(material.name() + " is not a backblock!");
+
+        removeBackBlock(material);
+        return material;
+    }
+
+    public void removeBackBlock(Material material) {
+        backBlocks.remove(material);
+    }
+
+    public boolean hasBackBlock(Material material) {
+        return backBlocks.contains(material);
+    }
+
+    private static Material getMaterial(String materialName){
+        Material material = Material.matchMaterial(materialName);
+
+        if(material == null)
+            throw new IllegalStateException("\"" + materialName + "\" is not a material!");
+
+        return material;
     }
 }

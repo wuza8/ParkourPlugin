@@ -2,33 +2,36 @@ package AyBiCi.ParkourPlugin.commands.apk;
 
 import AyBiCi.ParkourPlugin.Parkour;
 import AyBiCi.ParkourPlugin.ParkourPlugin;
+import AyBiCi.ParkourPlugin.ParkourSession;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class AddBackBlockCommand implements CommandExecutor {
+public class RemoveBackBlockCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         Player player = (Player) sender;
-        Parkour playerParkour = ParkourPlugin.parkourSessionSet.getSession(player).getParkour();
+        ParkourSession session = ParkourPlugin.parkourSessionSet.getSession(player);
 
-        if(playerParkour == null) {
-            sender.sendMessage("You need to join parkour to use this command!");
+        if(!session.isPlayerOnParkour()){
+            player.sendMessage("You need to join parkour to use this command!");
             return false;
         }
 
+        Parkour parkour = session.getParkour();
+
         for(String materialName : args){
-            try {
-                Material material = playerParkour.addBackBlock(materialName);
-                player.sendMessage("Added backblock "+material.name());
+            try{
+                Material material = parkour.removeBackBlock(materialName);
+                player.sendMessage("Removed backblock "+material.name());
             }
             catch(IllegalStateException exception){
                 player.sendMessage(exception.getMessage());
             }
         }
 
-        return true;
+        return false;
     }
 }

@@ -18,4 +18,8 @@ public class ParkourSession {
         parkourPlayerOn = parkour;
         player.teleport(parkour.getLocation());
     }
+
+    public boolean isPlayerOnParkour() {
+        return parkourPlayerOn != null;
+    }
 }
