@@ -2,10 +2,7 @@ package AyBiCi.ParkourPlugin;
 
 import AyBiCi.ParkourPlugin.commands.PkCommand;
 import AyBiCi.ParkourPlugin.commands.PkatCommand;
-import AyBiCi.ParkourPlugin.commands.apk.AddBackBlockCommand;
-import AyBiCi.ParkourPlugin.commands.apk.AddCommand;
-import AyBiCi.ParkourPlugin.commands.apk.RemoveBackBlockCommand;
-import AyBiCi.ParkourPlugin.commands.apk.RemoveCommand;
+import AyBiCi.ParkourPlugin.commands.apk.*;
 import com.github.aybici.Subcommand;
 import com.github.aybici.SubcommandExecutor;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -50,6 +47,11 @@ public class ParkourPlugin extends JavaPlugin {
                 , "<block1> [block2] [block3] [block4] [block5]"
                 , "removes backblocks",
                 new RemoveBackBlockCommand()
+        ));
+        executor.addCommandExecutor(new Subcommand("setspawn"
+                , ""
+                , "sets new spawn point",
+                new SetSpawnCommand()
         ));
 
 

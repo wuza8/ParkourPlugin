@@ -20,6 +20,10 @@ public class Parkour {
         return location.clone();
     }
 
+    public void setLocation(Location location){
+        this.location = location.clone();
+    }
+
     public String getName() {
         return name;
     }
