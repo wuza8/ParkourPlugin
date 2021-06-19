@@ -53,6 +53,11 @@ public class ParkourPlugin extends JavaPlugin {
                 , "sets new spawn point",
                 new SetSpawnCommand()
         ));
+        executor.addCommandExecutor(new Subcommand("play"
+                , ""
+                , "teleports player to joined parkour",
+                new PlayCommand()
+        ));
 
 
         getCommand("apk").setExecutor(executor);
