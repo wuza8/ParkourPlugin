@@ -1,5 +1,6 @@
-package AyBiCi.ParkourPlugin;
+package AyBiCi.ParkourPlugin.sessions;
 
+import AyBiCi.ParkourPlugin.parkours.Parkour;
 import org.bukkit.entity.Player;
 
 public class ParkourSession {

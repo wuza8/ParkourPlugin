@@ -1,5 +1,7 @@
-package AyBiCi.ParkourPlugin;
+package AyBiCi.ParkourPlugin.sessions;
 
+import AyBiCi.ParkourPlugin.parkours.Parkour;
+import AyBiCi.ParkourPlugin.parkours.ParkourSet;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;

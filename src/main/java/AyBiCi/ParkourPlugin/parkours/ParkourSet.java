@@ -1,4 +1,4 @@
-package AyBiCi.ParkourPlugin;
+package AyBiCi.ParkourPlugin.parkours;
 
 import org.bukkit.Location;
 

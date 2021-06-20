@@ -1,10 +1,8 @@
 package AyBiCi.ParkourPlugin;
 
-import AyBiCi.ParkourPlugin.commands.PkCommand;
-import AyBiCi.ParkourPlugin.commands.PkatCommand;
-import AyBiCi.ParkourPlugin.commands.apk.*;
-import com.github.aybici.Subcommand;
-import com.github.aybici.SubcommandExecutor;
+import AyBiCi.ParkourPlugin.commands.CommandExecutorSetter;
+import AyBiCi.ParkourPlugin.parkours.ParkourSet;
+import AyBiCi.ParkourPlugin.sessions.ParkourSessionSet;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.JavaPluginLoader;
@@ -18,49 +16,7 @@ public class ParkourPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getCommand("pk").setExecutor(new PkCommand());
-        getCommand("pkat").setExecutor(new PkatCommand());
-
-        SubcommandExecutor executor = new SubcommandExecutor("apk");
-
-        executor.addCommandExecutor(new Subcommand(
-            "add",
-            "<name>",
-            "adds new parkour",
-                new AddCommand()
-            ));
-
-        executor.addCommandExecutor(new Subcommand(
-                "remove",
-                "<name>",
-                "removes parkour",
-                new RemoveCommand()
-        ));
-
-        executor.addCommandExecutor(new Subcommand("addbb"
-                , "<block1> [block2] [block3] [block4] [block5]"
-                , "adds new backblocks",
-                new AddBackBlockCommand()
-        ));
-
-        executor.addCommandExecutor(new Subcommand("removebb"
-                , "<block1> [block2] [block3] [block4] [block5]"
-                , "removes backblocks",
-                new RemoveBackBlockCommand()
-        ));
-        executor.addCommandExecutor(new Subcommand("setspawn"
-                , ""
-                , "sets new spawn point",
-                new SetSpawnCommand()
-        ));
-        executor.addCommandExecutor(new Subcommand("play"
-                , ""
-                , "teleports player to joined parkour",
-                new PlayCommand()
-        ));
-
-
-        getCommand("apk").setExecutor(executor);
+        CommandExecutorSetter.setExecutors(this);
     }
 
     public ParkourPlugin()

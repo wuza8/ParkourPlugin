@@ -1,6 +1,6 @@
 package AyBiCi.ParkourPlugin.commands;
 
-import AyBiCi.ParkourPlugin.Parkour;
+import AyBiCi.ParkourPlugin.parkours.Parkour;
 import AyBiCi.ParkourPlugin.ParkourPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
