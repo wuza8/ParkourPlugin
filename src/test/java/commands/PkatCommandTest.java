@@ -1,6 +1,6 @@
 package commands;
 
-import AyBiCi.ParkourPlugin.ParkourPlugin;
+import aybici.parkourplugin.ParkourPlugin;
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
@@ -14,14 +14,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PkatCommandTest {
     private ServerMock server;
-    private ParkourPlugin plugin;
     private World world;
     private PlayerMock player;
 
     @Before
     public void setUp() {
         server = MockBukkit.mock();
-        plugin = (ParkourPlugin) MockBukkit.load(ParkourPlugin.class);
+        ParkourPlugin plugin = MockBukkit.load(ParkourPlugin.class);
         player = server.addPlayer();
         world = player.getLocation().getWorld();
     }

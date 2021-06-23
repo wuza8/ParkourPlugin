@@ -1,24 +1,25 @@
-package AyBiCi.ParkourPlugin.sessions;
+package aybici.parkourplugin.sessions;
 
-import AyBiCi.ParkourPlugin.ParkourPlugin;
-import AyBiCi.ParkourPlugin.blockabovereader.OnNewBlockPlayerStandObserver;
-import AyBiCi.ParkourPlugin.events.PlayerEndsParkourEvent;
-import AyBiCi.ParkourPlugin.events.PlayerStartsParkourEvent;
-import AyBiCi.ParkourPlugin.parkours.Parkour;
+import aybici.parkourplugin.ParkourPlugin;
+import aybici.parkourplugin.blockabovereader.OnNewBlockPlayerStandObserver;
+import aybici.parkourplugin.events.PlayerEndsParkourEvent;
+import aybici.parkourplugin.events.PlayerStartsParkourEvent;
+import aybici.parkourplugin.parkours.Parkour;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 public class ParkourSession implements OnNewBlockPlayerStandObserver {
-    private Player player;
+    private final Player player;
     private Parkour parkourPlayerOn;
     private PlayerGameplayState playerGameplayState = PlayerGameplayState.ON_PARKOUR;
-    private PlayerTimer playerTimer = new PlayerTimer(player);
+    private final PlayerTimer playerTimer;
 
     public ParkourSession(Player player){
         this.player = player;
         ParkourPlugin.underPlayerBlockWatcher.registerNewObserver(player, this);
+        playerTimer = new PlayerTimer();
     }
 
     public Parkour getParkour() {

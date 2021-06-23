@@ -1,7 +1,7 @@
-package AyBiCi.ParkourPlugin.sessions;
+package aybici.parkourplugin.sessions;
 
-import AyBiCi.ParkourPlugin.parkours.Parkour;
-import AyBiCi.ParkourPlugin.parkours.ParkourSet;
+import aybici.parkourplugin.parkours.Parkour;
+import aybici.parkourplugin.parkours.ParkourSet;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.UUID;
 
 public class ParkourSessionSet {
-    private Map<UUID, ParkourSession> parkourSessions = new HashMap<>();
-    private ParkourSet parkourSet;
+    private final Map<UUID, ParkourSession> parkourSessions = new HashMap<>();
+    private final ParkourSet parkourSet;
 
     public ParkourSessionSet(ParkourSet parkourSet) {
         this.parkourSet = parkourSet;

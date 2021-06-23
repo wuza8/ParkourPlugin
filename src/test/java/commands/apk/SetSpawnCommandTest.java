@@ -1,6 +1,6 @@
 package commands.apk;
 
-import AyBiCi.ParkourPlugin.ParkourPlugin;
+import aybici.parkourplugin.ParkourPlugin;
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
@@ -13,18 +13,15 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class SetSpawnCommandTest {
-    private ServerMock server;
-    private ParkourPlugin plugin;
     private PlayerMock player;
-    private World world;
 
     @Before
     public void setUp()
     {
-        server = MockBukkit.mock();
-        plugin = (ParkourPlugin) MockBukkit.load(ParkourPlugin.class);
+        ServerMock server = MockBukkit.mock();
+        ParkourPlugin plugin = MockBukkit.load(ParkourPlugin.class);
         player = server.addPlayer();
-        world = player.getLocation().getWorld();
+        World world = player.getLocation().getWorld();
     }
 
     @After

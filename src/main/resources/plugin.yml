@@ -1,5 +1,5 @@
 name: ParkourPlugin
-main: AyBiCi.ParkourPlugin.ParkourPlugin
+main: aybici.parkourplugin.ParkourPlugin
 version: 0.1
 commands:
   apk:

@@ -1,4 +1,4 @@
-package AyBiCi.ParkourPlugin.blockabovereader;
+package aybici.parkourplugin.blockabovereader;
 
 import org.bukkit.block.Block;
 

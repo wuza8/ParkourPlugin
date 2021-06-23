@@ -1,9 +1,9 @@
-package AyBiCi.ParkourPlugin;
+package aybici.parkourplugin;
 
-import AyBiCi.ParkourPlugin.blockabovereader.UnderPlayerBlockWatcher;
-import AyBiCi.ParkourPlugin.commands.CommandExecutorSetter;
-import AyBiCi.ParkourPlugin.parkours.ParkourSet;
-import AyBiCi.ParkourPlugin.sessions.ParkourSessionSet;
+import aybici.parkourplugin.blockabovereader.UnderPlayerBlockWatcher;
+import aybici.parkourplugin.commands.CommandExecutorSetter;
+import aybici.parkourplugin.parkours.ParkourSet;
+import aybici.parkourplugin.sessions.ParkourSessionSet;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -13,9 +13,9 @@ import java.io.File;
 
 public class ParkourPlugin extends JavaPlugin {
 
-    public static ParkourSet parkourSet = new ParkourSet();
-    public static ParkourSessionSet parkourSessionSet = new ParkourSessionSet(parkourSet);
-    public static UnderPlayerBlockWatcher underPlayerBlockWatcher = new UnderPlayerBlockWatcher();
+    public static final ParkourSet parkourSet = new ParkourSet();
+    public static final ParkourSessionSet parkourSessionSet = new ParkourSessionSet(parkourSet);
+    public static final UnderPlayerBlockWatcher underPlayerBlockWatcher = new UnderPlayerBlockWatcher();
 
     @Override
     public void onEnable() {

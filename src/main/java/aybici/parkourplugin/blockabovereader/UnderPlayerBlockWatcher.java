@@ -1,4 +1,4 @@
-package AyBiCi.ParkourPlugin.blockabovereader;
+package aybici.parkourplugin.blockabovereader;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class UnderPlayerBlockWatcher implements Listener {
-    public HashMap<UUID, List<OnNewBlockPlayerStandObserver>> underPlayerBlockObservers = new HashMap<>();
+    public final HashMap<UUID, List<OnNewBlockPlayerStandObserver>> underPlayerBlockObservers = new HashMap<>();
 
     public void registerNewObserver(Player player, OnNewBlockPlayerStandObserver observer){
         getPlayerObservers(player).add(observer);

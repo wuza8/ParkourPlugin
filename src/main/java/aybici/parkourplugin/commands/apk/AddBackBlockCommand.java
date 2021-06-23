@@ -1,7 +1,7 @@
-package AyBiCi.ParkourPlugin.commands.apk;
+package aybici.parkourplugin.commands.apk;
 
-import AyBiCi.ParkourPlugin.parkours.Parkour;
-import AyBiCi.ParkourPlugin.ParkourPlugin;
+import aybici.parkourplugin.parkours.Parkour;
+import aybici.parkourplugin.ParkourPlugin;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

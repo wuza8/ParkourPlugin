@@ -1,6 +1,6 @@
-package AyBiCi.ParkourPlugin.events;
+package aybici.parkourplugin.events;
 
-import AyBiCi.ParkourPlugin.parkours.Parkour;
+import aybici.parkourplugin.parkours.Parkour;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -10,15 +10,9 @@ public class PlayerEndsParkourEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     private boolean canceled = false;
 
-    private Player player;
-    private Parkour parkour;
-    private long timeInMillis;
-
-    public PlayerEndsParkourEvent(Player player, Parkour parkourPlayerOn, long playerTime) {
-        this.player = player;
-        this.parkour = parkourPlayerOn;
-        this.timeInMillis = playerTime;
-    }
+    private final Player player;
+    private final Parkour parkour;
+    private final long timeInMillis;
 
     public Player getPlayer() {
         return player;
@@ -30,6 +24,12 @@ public class PlayerEndsParkourEvent extends Event implements Cancellable {
 
     public long getTimeInMillis() {
         return timeInMillis;
+    }
+
+    public PlayerEndsParkourEvent(Player player, Parkour parkourPlayerOn, long playerTime) {
+        this.player = player;
+        this.parkour = parkourPlayerOn;
+        this.timeInMillis = playerTime;
     }
 
     @Override

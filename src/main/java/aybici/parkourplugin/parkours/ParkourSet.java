@@ -1,4 +1,4 @@
-package AyBiCi.ParkourPlugin.parkours;
+package aybici.parkourplugin.parkours;
 
 import org.bukkit.Location;
 
@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ParkourSet {
-    private Set<Parkour> parkours = new HashSet<>();
+    private final Set<Parkour> parkours = new HashSet<>();
 
 
     public void addParkour(String name, Location location) throws IllegalStateException{

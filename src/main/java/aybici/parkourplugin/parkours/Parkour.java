@@ -1,4 +1,4 @@
-package AyBiCi.ParkourPlugin.parkours;
+package aybici.parkourplugin.parkours;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -7,9 +7,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Parkour {
-    private String name;
+    private final String name;
     private Location location;
-    private Set<Material> backBlocks = new HashSet<>();
+    private final Set<Material> backBlocks = new HashSet<>();
 
     Parkour(String name, Location location){
         this.name = name;
