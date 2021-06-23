@@ -1,5 +1,6 @@
 package AyBiCi.ParkourPlugin.sessions;
 
+import AyBiCi.ParkourPlugin.ParkourPlugin;
 import AyBiCi.ParkourPlugin.blockabovereader.OnNewBlockPlayerStandObserver;
 import AyBiCi.ParkourPlugin.events.PlayerEndsParkourEvent;
 import AyBiCi.ParkourPlugin.events.PlayerStartsParkourEvent;
@@ -17,6 +18,7 @@ public class ParkourSession implements OnNewBlockPlayerStandObserver {
 
     public ParkourSession(Player player){
         this.player = player;
+        ParkourPlugin.underPlayerBlockWatcher.registerNewObserver(player, this);
     }
 
     public Parkour getParkour() {
@@ -34,27 +36,29 @@ public class ParkourSession implements OnNewBlockPlayerStandObserver {
     }
 
     public void onPlayerStandOnGreenWool(){
-        if(playerGameplayState.equals(PlayerGameplayState.ON_PARKOUR)){
-            PlayerStartsParkourEvent event = new PlayerStartsParkourEvent(player, parkourPlayerOn);
-            Bukkit.getServer().getPluginManager().callEvent(event);
+        if(!playerGameplayState.equals(PlayerGameplayState.ON_PARKOUR)) return;
 
-            if(!event.isCancelled()) {
-                playerGameplayState = PlayerGameplayState.PARKOURING;
-                playerTimer.startTimer();
-            }
+        PlayerStartsParkourEvent event = new PlayerStartsParkourEvent(player, parkourPlayerOn);
+        Bukkit.getServer().getPluginManager().callEvent(event);
+
+        if(!event.isCancelled()) {
+            playerGameplayState = PlayerGameplayState.PARKOURING;
+            playerTimer.startTimer();
         }
     }
 
     public void onPlayerStandOnRedWool(){
-        if(playerGameplayState.equals(PlayerGameplayState.PARKOURING)){
-            long playerTime = playerTimer.actualTime();
-            PlayerEndsParkourEvent event = new PlayerEndsParkourEvent(player, parkourPlayerOn, playerTime);
-            Bukkit.getServer().getPluginManager().callEvent(event);
+        if(!playerGameplayState.equals(PlayerGameplayState.PARKOURING)) return;
 
-            if(!event.isCancelled()) {
-                playerGameplayState = PlayerGameplayState.ON_PARKOUR;
-                playerTimer.resetTimer();
-            }
+        long playerTime = playerTimer.actualTime();
+
+        PlayerEndsParkourEvent event = new PlayerEndsParkourEvent(player, parkourPlayerOn, playerTime);
+        Bukkit.getServer().getPluginManager().callEvent(event);
+
+        if(!event.isCancelled()) {
+            playerGameplayState = PlayerGameplayState.ON_PARKOUR;
+            playerTimer.resetTimer();
+            player.sendMessage("Your time: "+playerTime/1000+":"+playerTime%1000);
         }
     }
 

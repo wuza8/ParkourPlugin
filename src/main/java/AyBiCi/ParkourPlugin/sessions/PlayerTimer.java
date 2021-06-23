@@ -3,19 +3,22 @@ package AyBiCi.ParkourPlugin.sessions;
 import org.bukkit.entity.Player;
 
 public class PlayerTimer {
-    public PlayerTimer(Player player) {
+    private Player player;
+    private long time;
 
+    public PlayerTimer(Player player) {
+        this.player = player;
     }
 
     public void startTimer() {
-
+        time = System.currentTimeMillis();
     }
 
     public long actualTime() {
-        return 0;
+        return System.currentTimeMillis() - time;
     }
 
     public void resetTimer() {
-
+        time = 0;
     }
 }
