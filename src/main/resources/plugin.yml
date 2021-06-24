@@ -1,6 +1,7 @@
 name: ParkourPlugin
 main: aybici.parkourplugin.ParkourPlugin
 version: 0.1
+api-version: 1.16
 commands:
   apk:
   pk:

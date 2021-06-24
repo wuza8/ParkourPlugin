@@ -20,6 +20,7 @@ public class ParkourPluginTest {
     private Location parkourSpawn;
     private Location parkourStartBlockLocation;
     private Location parkourStopBlockLocation;
+    private Location parkourBackBlock;
 
     private Random random;
 
@@ -32,6 +33,7 @@ public class ParkourPluginTest {
         parkourSpawn = new Location(world, 100, 10, 100);
         parkourStartBlockLocation = new Location(world, 102, 10, 100);
         parkourStopBlockLocation = new Location(world, 115, 10, 100);
+        parkourBackBlock = new Location(world, 105, 9, 100);
         createParkour();
         random = new Random();
     }
@@ -39,8 +41,11 @@ public class ParkourPluginTest {
     private void createParkour(){
         parkourStartBlockLocation.clone().add(0, -1, 0).getBlock().setType(Material.LIME_WOOL);
         parkourStopBlockLocation.clone().add(0, -1, 0).getBlock().setType(Material.RED_WOOL);
+        parkourBackBlock.clone().add(0,-1,0).getBlock().setType(Material.OAK_LOG);
         player.simulatePlayerMove(parkourSpawn);
         player.performCommand("apk add pk1");
+        player.nextMessage();
+        player.performCommand("apk addbb OAK_LOG");
         player.nextMessage();
         player.assertTeleported(player.getLocation(), 1);
     }
@@ -66,6 +71,13 @@ public class ParkourPluginTest {
         //TODO: Find out why this line doesn't work on MockBukkit
         //player.assertTeleported(parkourSpawn, 1);
         assertThat(player.nextMessage(),startsWith("Your time: "+time/1000+":"));
+    }
+
+    @Test
+    public void backBlockTest(){
+        player.simulatePlayerMove(parkourBackBlock);
+        //TODO: Find out why this line doesn't work on MockBukkit
+        //player.assertTeleported(parkourSpawn, 1);
     }
 
     private void stepOnGreenWool(){
