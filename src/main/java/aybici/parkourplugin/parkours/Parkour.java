@@ -13,7 +13,7 @@ public class Parkour {
 
     Parkour(String name, Location location){
         this.name = name;
-        this.location = location;
+        this.location = location.clone();
     }
 
     public Location getLocation(){

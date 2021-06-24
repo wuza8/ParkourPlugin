@@ -57,9 +57,9 @@ public class ParkourSession implements OnNewBlockPlayerStandObserver {
         Bukkit.getServer().getPluginManager().callEvent(event);
 
         if(!event.isCancelled()) {
-            playerGameplayState = PlayerGameplayState.ON_PARKOUR;
             playerTimer.resetTimer();
             player.sendMessage("Your time: "+playerTime/1000+":"+playerTime%1000);
+            teleportTo(parkourPlayerOn);
         }
     }
 

@@ -42,6 +42,7 @@ public class ParkourPluginTest {
         player.simulatePlayerMove(parkourSpawn);
         player.performCommand("apk add pk1");
         player.nextMessage();
+        player.assertTeleported(player.getLocation(), 1);
     }
 
 
@@ -62,6 +63,8 @@ public class ParkourPluginTest {
             e.printStackTrace();
         }
         stepOnRedWool();
+        //TODO: Find out why this line doesn't work on MockBukkit
+        //player.assertTeleported(parkourSpawn, 1);
         assertThat(player.nextMessage(),startsWith("Your time: "+time/1000+":"));
     }
 
