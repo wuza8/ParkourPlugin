@@ -1,13 +1,19 @@
 package aybici.parkourplugin.parkours;
 
+import aybici.parkourplugin.ParkourPlugin;
 import org.bukkit.Location;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class ParkourSet {
     private final Set<Parkour> parkours = new HashSet<>();
-
 
     public void addParkour(String name, Location location) throws IllegalStateException{
         if(doesExist(name))
@@ -38,5 +44,22 @@ public class ParkourSet {
 
     public void removeParkour(String name) {
         parkours.remove( getParkour(name) );
+    }
+
+    public void saveParkours(){
+        Session session = ParkourPlugin.getSessionFactory().openSession();
+
+        Transaction transaction = session.beginTransaction();
+
+        for(Parkour parkour : parkours){
+            session.save(parkour);
+        }
+
+        transaction.commit();
+        session.close();
+    }
+
+    public void loadParkours(){
+
     }
 }

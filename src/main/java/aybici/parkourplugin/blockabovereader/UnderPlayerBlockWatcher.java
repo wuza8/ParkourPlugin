@@ -33,7 +33,7 @@ public class UnderPlayerBlockWatcher implements Listener {
         Block block = event.getTo().clone().add(0,-1,0).getBlock();
 
         for(OnNewBlockPlayerStandObserver observer : getPlayerObservers(event.getPlayer())){
-            observer.playerStandOnNewBlock(block);
+            observer.playerStandOnNewBlock(block, event);
         }
     }
 

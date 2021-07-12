@@ -1,27 +1,33 @@
 package aybici.parkourplugin.parkours;
 
+import aybici.parkourplugin.parkours.hibernate.BackBlockSet;
+import aybici.parkourplugin.parkours.hibernate.EmbedableLocation;
 import org.bukkit.Location;
 import org.bukkit.Material;
 
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.*;
 
+@Entity
+@Table(name="ParkourPlugin_Parkours")
 public class Parkour {
+    @Id
     private final String name;
-    private Location location;
-    private final Set<Material> backBlocks = new HashSet<>();
+
+    // New wrapper classes are used for Hibernate (EmbedableLocation, BackBlockSet)
+    private EmbedableLocation embedableLocation = new EmbedableLocation();
+    private BackBlockSet backBlocks = new BackBlockSet();
 
     Parkour(String name, Location location){
         this.name = name;
-        this.location = location.clone();
+        setLocation(location);
     }
 
     public Location getLocation(){
-        return location.clone();
+        return embedableLocation.getLocation();
     }
 
     public void setLocation(Location location){
-        this.location = location.clone();
+        embedableLocation.setLocation(location);
     }
 
     public String getName() {

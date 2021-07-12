@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 public class ParkourSession implements OnNewBlockPlayerStandObserver {
     private final Player player;
@@ -22,6 +23,14 @@ public class ParkourSession implements OnNewBlockPlayerStandObserver {
         playerTimer = new PlayerTimer();
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public PlayerGameplayState getPlayerGameplayState() {
+        return playerGameplayState;
+    }
+
     public Parkour getParkour() {
         return parkourPlayerOn;
     }
@@ -29,6 +38,11 @@ public class ParkourSession implements OnNewBlockPlayerStandObserver {
     public void teleportTo(Parkour parkour){
         parkourPlayerOn = parkour;
         player.teleport(parkour.getLocation());
+        playerGameplayState = PlayerGameplayState.ON_PARKOUR;
+    }
+
+    public void stopParkour(){
+        playerTimer.resetTimer();
         playerGameplayState = PlayerGameplayState.ON_PARKOUR;
     }
 
@@ -64,14 +78,16 @@ public class ParkourSession implements OnNewBlockPlayerStandObserver {
     }
 
     @Override
-    public void playerStandOnNewBlock(Block block) {
+    public void playerStandOnNewBlock(Block block, PlayerMoveEvent event) {
         Material material = block.getType();
 
         if(material.equals(Material.LIME_WOOL))
             onPlayerStandOnGreenWool();
         else if(material.equals(Material.RED_WOOL))
             onPlayerStandOnRedWool();
-        else if(parkourPlayerOn.hasBackBlock(material))
+        else if(parkourPlayerOn.hasBackBlock(material)) {
             teleportTo(parkourPlayerOn);
+            event.setCancelled(true);
+        }
     }
 }

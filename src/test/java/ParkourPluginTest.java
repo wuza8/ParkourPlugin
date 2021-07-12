@@ -13,6 +13,8 @@ import java.util.Random;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.startsWith;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class ParkourPluginTest {
     private PlayerMock player;
@@ -47,7 +49,6 @@ public class ParkourPluginTest {
         player.nextMessage();
         player.performCommand("apk addbb OAK_LOG");
         player.nextMessage();
-        player.assertTeleported(player.getLocation(), 1);
     }
 
 
@@ -68,16 +69,31 @@ public class ParkourPluginTest {
             e.printStackTrace();
         }
         stepOnRedWool();
-        //TODO: Find out why this line doesn't work on MockBukkit
-        //player.assertTeleported(parkourSpawn, 1);
+        player.assertTeleported(parkourSpawn, 1);
         assertThat(player.nextMessage(),startsWith("Your time: "+time/1000+":"));
     }
 
     @Test
     public void backBlockTest(){
         player.simulatePlayerMove(parkourBackBlock);
+        player.assertTeleported(parkourSpawn, 1);
+    }
+
+    @Test
+    public void playerChangesGamemodeWhileParkouring(){
+        stepOnGreenWool();
+        player.setOp(true);
+        player.performCommand("gamemode creative");
         //TODO: Find out why this line doesn't work on MockBukkit
-        //player.assertTeleported(parkourSpawn, 1);
+        //assertEquals("Parkour stopped!", player.nextMessage());
+        stepOnGreenWool();
+        stepOnRedWool();
+        assertNull(player.nextMessage());
+    }
+
+    @Test
+    public void savingTest(){
+        ParkourPlugin.parkourSet.saveParkours();
     }
 
     private void stepOnGreenWool(){
