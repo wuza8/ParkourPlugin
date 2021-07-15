@@ -1,4 +1,4 @@
-Note: This plugin is NOT ready yet!
+**Note: This plugin is NOT ready yet!**
 # ParkourPlugin
 
 The goal of this project is to create a module based, bukkit parkour plugin, so customizable that even non-programmer would be able to use it and configure it to his own needs.
