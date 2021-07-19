@@ -73,6 +73,7 @@ public class ParkourSession implements OnNewBlockPlayerStandObserver {
         if(!event.isCancelled()) {
             playerTimer.resetTimer();
             player.sendMessage("Your time: "+playerTime/1000+":"+playerTime%1000);
+            parkourPlayerOn.getTopList().addTopLine(player, playerTime);
             teleportTo(parkourPlayerOn);
         }
     }
@@ -87,6 +88,7 @@ public class ParkourSession implements OnNewBlockPlayerStandObserver {
             onPlayerStandOnRedWool();
         else if(parkourPlayerOn.hasBackBlock(material)) {
             teleportTo(parkourPlayerOn);
+            playerTimer.resetTimer();
             event.setCancelled(true);
         }
     }

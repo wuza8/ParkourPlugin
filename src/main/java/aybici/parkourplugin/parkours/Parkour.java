@@ -12,6 +12,7 @@ import javax.persistence.*;
 public class Parkour {
     @Id
     private final String name;
+    private TopList topList = new TopList();
 
     // New wrapper classes are used for Hibernate (EmbedableLocation, BackBlockSet)
     private EmbedableLocation embedableLocation = new EmbedableLocation();
@@ -20,6 +21,10 @@ public class Parkour {
     Parkour(String name, Location location){
         this.name = name;
         setLocation(location);
+    }
+
+    public TopList getTopList(){
+        return topList;
     }
 
     public Location getLocation(){

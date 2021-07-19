@@ -14,6 +14,13 @@ public class CommandExecutorSetter {
         SubcommandExecutor executor = new SubcommandExecutor("apk");
 
         executor.addCommandExecutor(new Subcommand(
+                "times",
+                "",
+                "sends to player all times of parkour",
+                new PrintTopListCommand()
+        ));
+
+        executor.addCommandExecutor(new Subcommand(
                 "add",
                 "<name>",
                 "adds new parkour",
