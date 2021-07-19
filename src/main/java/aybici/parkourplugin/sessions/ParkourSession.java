@@ -20,7 +20,7 @@ public class ParkourSession implements OnNewBlockPlayerStandObserver {
     public ParkourSession(Player player){
         this.player = player;
         ParkourPlugin.underPlayerBlockWatcher.registerNewObserver(player, this);
-        playerTimer = new PlayerTimer();
+        playerTimer = new PlayerTimer(player);
     }
 
     public Player getPlayer() {
