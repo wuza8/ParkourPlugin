@@ -40,7 +40,14 @@ public class ParkourPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
-        initHibernate();
+
+        try {
+            initHibernate();
+        }
+        catch(Exception exception){
+            System.out.println("Hibernate doesn't work! Error: "+exception.getMessage());
+        }
+
         CommandExecutorSetter.setExecutors(this);
         Bukkit.getServer().getPluginManager().registerEvents(underPlayerBlockWatcher, this);
         Bukkit.getServer().getPluginManager().registerEvents(new StopPlayerParkourOnGamemodeChange(), this);
