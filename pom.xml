@@ -55,6 +55,15 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.25</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.aybici</groupId>
+            <artifactId>subcommandexecutor</artifactId>
+            <version>0.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/SubcommandExecutor.jar</systemPath>
+        </dependency>
+
     </dependencies>
 
 </project>
