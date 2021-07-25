@@ -23,7 +23,7 @@ public class Parkour {
         setLocation(location);
     }
 
-    public TopList getTopList(){
+    public TopList getTopListObject(){
         return topList;
     }
 

@@ -39,6 +39,7 @@ public class ParkourSession implements OnNewBlockPlayerStandObserver {
         parkourPlayerOn = parkour;
         player.teleport(parkour.getLocation());
         playerGameplayState = PlayerGameplayState.ON_PARKOUR;
+        playerTimer.resetTimer();
     }
 
     public void stopParkour(){
@@ -57,6 +58,7 @@ public class ParkourSession implements OnNewBlockPlayerStandObserver {
         Bukkit.getServer().getPluginManager().callEvent(event);
 
         if(!event.isCancelled()) {
+            player.sendMessage("Parkour " + parkourPlayerOn.getName() + " started");
             playerGameplayState = PlayerGameplayState.PARKOURING;
             playerTimer.startTimer();
         }
@@ -72,8 +74,8 @@ public class ParkourSession implements OnNewBlockPlayerStandObserver {
 
         if(!event.isCancelled()) {
             playerTimer.resetTimer();
-            player.sendMessage("Your time: "+playerTime/1000+":"+playerTime%1000);
-            parkourPlayerOn.getTopList().addTopLine(player, playerTime);
+            player.sendMessage("Your time: " + ParkourPlugin.topListDisplay.timeToString(playerTime));
+            parkourPlayerOn.getTopListObject().addTopLine(player, playerTime);
             teleportTo(parkourPlayerOn);
         }
     }
@@ -89,7 +91,7 @@ public class ParkourSession implements OnNewBlockPlayerStandObserver {
         else if(parkourPlayerOn.hasBackBlock(material)) {
             teleportTo(parkourPlayerOn);
             playerTimer.resetTimer();
-            event.setCancelled(true);
+            //event.setCancelled(true); <---- causes backblocks bug
         }
     }
 }

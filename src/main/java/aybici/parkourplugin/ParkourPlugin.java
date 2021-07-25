@@ -4,6 +4,7 @@ import aybici.parkourplugin.blockabovereader.UnderPlayerBlockWatcher;
 import aybici.parkourplugin.commands.CommandExecutorSetter;
 import aybici.parkourplugin.parkours.Parkour;
 import aybici.parkourplugin.parkours.ParkourSet;
+import aybici.parkourplugin.parkours.TopListDisplay;
 import aybici.parkourplugin.services.StopPlayerParkourOnGamemodeChange;
 import aybici.parkourplugin.sessions.ParkourSessionSet;
 import org.bukkit.Bukkit;
@@ -22,6 +23,8 @@ public class ParkourPlugin extends JavaPlugin {
     public static final ParkourSet parkourSet = new ParkourSet();
     public static final ParkourSessionSet parkourSessionSet = new ParkourSessionSet(parkourSet);
     public static final UnderPlayerBlockWatcher underPlayerBlockWatcher = new UnderPlayerBlockWatcher();
+    public static TopListDisplay topListDisplay = new TopListDisplay();
+    public static DateAndTime dateAndTime = new DateAndTime();
     public static ParkourPlugin plugin;
 
     public static ParkourPlugin getInstance(){
