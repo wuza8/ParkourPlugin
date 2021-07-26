@@ -87,6 +87,7 @@ public class ParkourSession implements OnNewBlockPlayerStandObserver {
             onPlayerStandOnRedWool();
         else if(parkourPlayerOn.hasBackBlock(material)) {
             teleportTo(parkourPlayerOn);
+            playerTimer.resetTimer();
             event.setCancelled(true);
         }
     }
