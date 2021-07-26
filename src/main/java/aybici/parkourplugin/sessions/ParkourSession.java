@@ -36,9 +36,9 @@ public class ParkourSession implements OnNewBlockPlayerStandObserver {
     }
 
     public void teleportTo(Parkour parkour){
+        stopParkour();
         parkourPlayerOn = parkour;
         player.teleport(parkour.getLocation());
-        playerGameplayState = PlayerGameplayState.ON_PARKOUR;
     }
 
     public void stopParkour(){
@@ -71,7 +71,6 @@ public class ParkourSession implements OnNewBlockPlayerStandObserver {
         Bukkit.getServer().getPluginManager().callEvent(event);
 
         if(!event.isCancelled()) {
-            playerTimer.resetTimer();
             player.sendMessage("Your time: "+playerTime/1000+":"+playerTime%1000);
             teleportTo(parkourPlayerOn);
         }
@@ -87,8 +86,6 @@ public class ParkourSession implements OnNewBlockPlayerStandObserver {
             onPlayerStandOnRedWool();
         else if(parkourPlayerOn.hasBackBlock(material)) {
             teleportTo(parkourPlayerOn);
-            playerTimer.resetTimer();
-            event.setCancelled(true);
         }
     }
 }

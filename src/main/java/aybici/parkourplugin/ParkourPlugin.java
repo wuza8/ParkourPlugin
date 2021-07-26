@@ -42,7 +42,7 @@ public class ParkourPlugin extends JavaPlugin {
         plugin = this;
       
         try {
-            initHibernate();
+            //initHibernate();
         }
         catch(Exception exception){
             System.out.println("Hibernate doesn't work! Error: "+exception.getMessage());

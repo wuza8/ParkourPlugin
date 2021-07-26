@@ -34,6 +34,9 @@ public class PlayerTimer{
 
     public void resetTimer() {
         time = 0;
-        timerTask.cancel();
+        if(timerTask != null) {
+            timerTask.cancel();
+            timerTask = null;
+        }
     }
 }
