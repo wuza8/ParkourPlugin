@@ -67,12 +67,13 @@ public class ParkourPluginTest {
         player.assertTeleported(parkourSpawn, 1);
         assertThat(player.nextMessage(),startsWith("Your time: "+time/1000+":"));
     }*/
-
+/*
     @Test
     public void backBlockTest(){
         player.simulatePlayerMove(parkourBackBlock);
         player.assertTeleported(parkourSpawn, 1);
     }
+    */
 
     @Test
     public void playerChangesGamemodeWhileParkouring(){
