@@ -22,6 +22,11 @@ public class ParkourPlugin extends JavaPlugin {
     public static final ParkourSet parkourSet = new ParkourSet();
     public static final ParkourSessionSet parkourSessionSet = new ParkourSessionSet(parkourSet);
     public static final UnderPlayerBlockWatcher underPlayerBlockWatcher = new UnderPlayerBlockWatcher();
+    public static ParkourPlugin plugin;
+
+    public static ParkourPlugin getInstance(){
+        return plugin;
+    }
 
     //Hibernate
     private static final Configuration configuration = new Configuration();
@@ -34,9 +39,10 @@ public class ParkourPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
+        plugin = this;
+      
         try {
-            initHibernate();
+            //initHibernate();
         }
         catch(Exception exception){
             System.out.println("Hibernate doesn't work! Error: "+exception.getMessage());
