@@ -1,5 +1,6 @@
 package aybici.parkourplugin.blockabovereader;
 
+import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -30,10 +31,30 @@ public class UnderPlayerBlockWatcher implements Listener {
 
     @EventHandler
     public void onAnyPlayerMove(PlayerMoveEvent event){
-        Block block = event.getTo().clone().add(0,-1,0).getBlock();
+        Location locationUnder = event.getTo().clone().add(0,-0.6,0);
+        int deltaX = 0;
+        int deltaZ = 0;
 
+        if (((int)(locationUnder.getX() - 0.3)) < ((int)locationUnder.getX())) deltaX = -1;
+        else if(((int)(locationUnder.getX() + 0.3)) > ((int)locationUnder.getX())) deltaX = 1;
+
+        if (((int)(locationUnder.getZ() - 0.3)) < ((int)locationUnder.getZ())) deltaZ = -1;
+        else if(((int)(locationUnder.getZ() + 0.3)) > ((int)locationUnder.getZ())) deltaZ = 1;
+
+        List<Block> blockList = new ArrayList<>();
+
+        if (locationUnder.getBlock().isPassable()) {
+            if (deltaZ != 0)
+                blockList.add(locationUnder.clone().add(0, 0, deltaZ).getBlock());
+            if (deltaX != 0)
+                blockList.add(locationUnder.clone().add(deltaX, 0, 0).getBlock());
+            if (deltaX != 0 && deltaZ != 0)
+                blockList.add(locationUnder.clone().add(deltaX, 0, deltaZ).getBlock());
+        }
+        blockList.add(locationUnder.getBlock());
+        
         for(OnNewBlockPlayerStandObserver observer : getPlayerObservers(event.getPlayer())){
-            observer.playerStandOnNewBlock(block, event);
+            observer.playerStandOnNewBlock(blockList);
         }
     }
 

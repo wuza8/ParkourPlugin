@@ -43,8 +43,8 @@ public class PkatCommandTest {
 
     @Test
     public void playerDoesntExist(){
-        player.performCommand("pkat Playerino");
-        assertEquals("Player with name \"Playerino\" doesn't exist!", player.nextMessage());
+        player.performCommand("pkat Player");
+        assertEquals("Player with name \"Player\" doesn't exist!", player.nextMessage());
     }
 
     @Test
