@@ -1,7 +1,6 @@
 package aybici.parkourplugin.sessions;
 
 import aybici.parkourplugin.ParkourPlugin;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
@@ -17,7 +16,7 @@ public class PlayerTimer{
 
     public void startTimer() {
         time = System.currentTimeMillis();
-        BukkitRunnable task = new BukkitRunnable(){
+        timerTask = new BukkitRunnable(){
             @Override
             public void run() {
                 long level = (actualTime()) / 1000;
@@ -26,10 +25,7 @@ public class PlayerTimer{
                 float exp = ((float) (actualTime()) % 1000) / 1000.0f;
                 player.setExp(exp);
             }
-        };
-
-        timerTask = Bukkit.getServer().getScheduler().runTaskTimer(
-                ParkourPlugin.getInstance(), task, 0, 2);
+        }.runTaskTimer(ParkourPlugin.getInstance(), 0, 2);
     }
 
     public long actualTime() {

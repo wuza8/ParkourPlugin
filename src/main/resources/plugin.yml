@@ -3,6 +3,28 @@ main: aybici.parkourplugin.ParkourPlugin
 version: 0.1
 api-version: 1.16
 commands:
+  pklist:
+  times:
   apk:
+  setlobby:
+    description: Sets lobby location to player location
+    usage: /setlobby
+  pkquit:
+    description: Quits parkour
+    usage: /pkquit
+  lobby:
+    description: Quits parkour and teleports to lobby
+    usage: /lobby [tpall]
+  ping:
+    description: Shows your ping
+    usage: /ping
+  hide:
+    description: Hide or show all players
+    usage: /hide <on/off>
+  fails:
+    description: Display number of fails on parkour
+    usage: /fails
   pk:
+    description: Teleport to a parkour
+    usage: /pk <pkname> (WARNING! replace " " to "_"); /pk <category> <ID>; try also /pklist;
   pkat:

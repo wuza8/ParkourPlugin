@@ -70,6 +70,6 @@ public class AddCommandTest {
         player.performCommand("apk add abc");
         player.nextMessage();
         player.performCommand("apk addbb air");
-        //assertNotEquals("You need to join parkour to use this command!", player.nextMessage());
+        assertNotEquals("You need to join parkour to use this command!", player.nextMessage());
     }
 }
