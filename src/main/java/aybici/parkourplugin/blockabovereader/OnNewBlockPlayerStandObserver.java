@@ -1,8 +1,9 @@
 package aybici.parkourplugin.blockabovereader;
 
 import org.bukkit.block.Block;
-import org.bukkit.event.player.PlayerMoveEvent;
+
+import java.util.List;
 
 public interface OnNewBlockPlayerStandObserver {
-    void playerStandOnNewBlock(Block block, PlayerMoveEvent event);
+    void playerStandOnNewBlock(List<Block> blockList);
 }
